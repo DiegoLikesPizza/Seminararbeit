@@ -38,5 +38,21 @@
   if (y) {
     y.textContent = new Date().getFullYear();
   }
+
+  // FAQ accordion
+  const faqItems = document.querySelectorAll('.faq-item');
+  faqItems.forEach(item => {
+    const button = item.querySelector('.faq-question');
+    const answer = item.querySelector('.faq-answer');
+    if (!button || !answer) return;
+
+    button.addEventListener('click', () => {
+      const isExpanded = button.getAttribute('aria-expanded') === 'true';
+      const newState = !isExpanded;
+      button.setAttribute('aria-expanded', String(newState));
+      item.classList.toggle('open', newState);
+      answer.hidden = !newState;
+    });
+  });
 })();
 
